@@ -21,8 +21,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
       - run: npm ci
       - run: npm run build --if-present
       - run: make lint
