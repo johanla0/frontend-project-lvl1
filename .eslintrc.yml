@@ -1,5 +1,4 @@
 ---
-
 plugins:
   # https://github.com/jest-community/eslint-plugin-jest
   - jest
@@ -20,4 +19,5 @@ parserOptions:
 rules:
   no-console: 0
   import/extensions: 0 # FIXME: remove when rule will be adjusted for new nodejs version
-  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
+  no-underscore-dangle: [2, { 'allow': ['__filename', '__dirname'] }]
+  no-await-in-loop: 0
