@@ -1,7 +1,19 @@
 import readlineSync from 'readline-sync';
 import { getRandomInt, generateArrayOfRandoms } from '../src/random.js';
 
-const getCorrectAnswer = (number1, number2, operator) => eval(number1 + operator + number2);
+// const getCorrectAnswer = (number1, number2, operator) => eval(number1 + operator + number2);
+const getCorrectAnswer = (number1, number2, operator) => {
+  switch (operator) {
+    case '+':
+      return number1 + number2;
+    case '-':
+      return number1 - number2;
+    case '*':
+      return number1 * number2;
+    default:
+      return NaN;
+  }
+};
 const getOperator = () => {
   const lower = 0;
   const upper = 2;
