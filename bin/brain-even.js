@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import input from '../src/cli.js';
+import greet from '../src/cli.js';
+import even from '../src/even.js';
 
 console.log('Welcome to the Brain Games!');
-input();
+const name = greet();
+even(name);
