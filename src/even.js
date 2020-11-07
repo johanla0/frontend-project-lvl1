@@ -5,33 +5,38 @@ const getRandomInt = (lower, upper) => {
   const max = Math.floor(upper);
   return Math.floor(Math.random() * (max - min)) + min;
 };
-
-const play = () => {
+const getCorrectAnswer = (number) => (number % 2 === 0 ? 'yes' : 'no');
+const check = (number, answer) => {
+  if (
+    (answer === 'yes' && getCorrectAnswer(number) === 'yes')
+    || (answer === 'no' && getCorrectAnswer(number) === 'no')
+  ) {
+    return true;
+  }
+  return false;
+};
+const play = (name) => {
   const lower = 0;
   const upper = 100;
   const numberOfTrials = 3;
+  let flag = 0;
   for (let i = 0; i < numberOfTrials; i += 1) {
     const number = getRandomInt(lower, upper);
+    console.log('Answer "yes" if the number is even, otherwise answer "no".');
     console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ');
-    if (
-      (answer === 'yes' && number % 2 === 0)
-      || (answer === 'no' && number % 2 !== 0)
-    ) {
+    if (check(number, answer)) {
       console.log('Correct!');
+      flag += 1;
     } else {
-      return false;
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${getCorrectAnswer(number)}'.`);
+      break;
     }
   }
-  return true;
-};
-const game = (name) => {
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
-  if (play()) {
+  if (flag === numberOfTrials) {
     console.log(`Congratulations, ${name}`);
   } else {
-    console.log("'yes' is wrong answer ;(. Correct answer was 'no'.");
     console.log(`Let's try again, ${name}`);
   }
 };
-export default game;
+export default play;
