@@ -1,10 +1,6 @@
 import readlineSync from 'readline-sync';
+import { generateArrayOfRandoms } from '../src/random.js';
 
-const getRandomInt = (lower, upper) => {
-  const min = Math.ceil(lower);
-  const max = Math.floor(upper);
-  return Math.floor(Math.random() * (max - min)) + min;
-};
 const getCorrectAnswer = (number) => (number % 2 === 0 ? 'yes' : 'no');
 const check = (number, answer) => {
   if (
@@ -15,21 +11,18 @@ const check = (number, answer) => {
   }
   return false;
 };
-const play = (name) => {
-  const lower = 0;
-  const upper = 100;
-  const numberOfTrials = 3;
+export default (name, numberOfTrials) => {
+  const numbers = generateArrayOfRandoms(numberOfTrials);
   let flag = 0;
   console.log('Answer "yes" if the number is even, otherwise answer "no".');
   for (let i = 0; i < numberOfTrials; i += 1) {
-    const number = getRandomInt(lower, upper);
-    console.log(`Question: ${number}`);
+    console.log(`Question: ${numbers[i]}`);
     const answer = readlineSync.question('Your answer: ');
-    if (check(number, answer)) {
+    if (check(numbers[i], answer)) {
       console.log('Correct!');
       flag += 1;
     } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${getCorrectAnswer(number)}'.`);
+      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${getCorrectAnswer(numbers[i])}".`);
       break;
     }
   }
@@ -39,4 +32,3 @@ const play = (name) => {
     console.log(`Let's try again, ${name}`);
   }
 };
-export default play;
