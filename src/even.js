@@ -20,9 +20,9 @@ const play = (name) => {
   const upper = 100;
   const numberOfTrials = 3;
   let flag = 0;
+  console.log('Answer "yes" if the number is even, otherwise answer "no".');
   for (let i = 0; i < numberOfTrials; i += 1) {
     const number = getRandomInt(lower, upper);
-    console.log('Answer "yes" if the number is even, otherwise answer "no".');
     console.log(`Question: ${number}`);
     const answer = readlineSync.question('Your answer: ');
     if (check(number, answer)) {
