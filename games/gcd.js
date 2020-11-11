@@ -16,7 +16,7 @@ const getCorrectAnswer = (number1, number2) => {
 };
 export default (name, numberOfTrials) => {
   const numbers = generateArrayOfRandoms(numberOfTrials * 2);
-  let flag = 0;
+  let flag = false;
   console.log('Find the greatest common divisor of given numbers.');
   let index = 0;
   for (let i = 0; i < numberOfTrials; i += 1) {
@@ -24,9 +24,12 @@ export default (name, numberOfTrials) => {
     const answer = readlineSync.question('Your answer: ');
     const correctAnswer = getCorrectAnswer(numbers[index], numbers[index + 1]);
     if (check(Number(answer), Number(correctAnswer))) {
-      flag += 1;
+      flag = true;
       index += 2;
-    } else { break; }
+    } else {
+      flag = false;
+      break;
+    }
   }
-  printResult(name, flag, numberOfTrials);
+  printResult(name, flag);
 };

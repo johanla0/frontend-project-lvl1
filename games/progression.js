@@ -16,7 +16,7 @@ const generateProgression = (length) => {
 };
 export default (name, numberOfTrials) => {
   const length = 10;
-  let flag = 0;
+  let flag = false;
   console.log('What number is missing in the progression?');
   for (let i = 0; i < numberOfTrials; i += 1) {
     const numbers = generateProgression(length);
@@ -27,8 +27,11 @@ export default (name, numberOfTrials) => {
     console.log(`Question: ${progression}`);
     const answer = readlineSync.question('Your answer: ');
     if (check(Number(answer), Number(correctAnswer))) {
-      flag += 1;
-    } else { break; }
+      flag = true;
+    } else {
+      flag = false;
+      break;
+    }
   }
   printResult(name, flag, numberOfTrials);
 };

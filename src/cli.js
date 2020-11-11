@@ -8,8 +8,8 @@ const greet = () => {
   console.log(`Hello ${name}!`);
   return name;
 };
-const printResult = (name, flag, numberOfTrials) => {
-  if (flag === numberOfTrials) {
+const printResult = (name, flag) => {
+  if (flag) {
     console.log(`Congratulations, ${name}`);
   } else {
     console.log(`Let's try again, ${name}`);
