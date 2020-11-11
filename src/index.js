@@ -3,6 +3,7 @@ import even from '../games/even.js';
 import calc from '../games/calc.js';
 import gcd from '../games/gcd.js';
 import progression from '../games/progression.js';
+import prime from '../games/prime.js';
 
 const play = (gameType) => {
   console.log('Welcome to the Brain Games!');
@@ -20,6 +21,9 @@ const play = (gameType) => {
       break;
     case 'progression':
       progression(name, numberOfTrials);
+      break;
+    case 'prime':
+      prime(name, numberOfTrials);
       break;
     default:
       break;
