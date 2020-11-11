@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import { getRandomInt } from '../src/random.js';
 import { printResult } from '../src/cli.js';
+import check from '../src/check.js';
 
 const generateProgression = (length) => {
   const start = getRandomInt();
@@ -13,7 +14,6 @@ const generateProgression = (length) => {
   }
   return progression;
 };
-const check = (answer, correctAnswer) => (answer === correctAnswer);
 export default (name, numberOfTrials) => {
   const length = 10;
   let flag = 0;
@@ -27,12 +27,8 @@ export default (name, numberOfTrials) => {
     console.log(`Question: ${progression}`);
     const answer = readlineSync.question('Your answer: ');
     if (check(Number(answer), Number(correctAnswer))) {
-      console.log('Correct!');
       flag += 1;
-    } else {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
-      break;
-    }
+    } else { break; }
   }
   printResult(name, flag, numberOfTrials);
 };

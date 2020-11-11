@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 import { getRandomInt, generateArrayOfRandoms } from '../src/random.js';
 import { printResult } from '../src/cli.js';
+import check from '../src/check.js';
 
 // const getCorrectAnswer = (number1, number2, operator) => eval(number1 + operator + number2);
 const getCorrectAnswer = (number1, number2, operator) => {
@@ -29,7 +30,6 @@ const getOperator = () => {
       return '+';
   }
 };
-const check = (answer, correctAnswer) => (answer === correctAnswer);
 export default (name, numberOfTrials) => {
   const numbers = generateArrayOfRandoms(numberOfTrials * 2);
   let flag = 0;
@@ -41,13 +41,9 @@ export default (name, numberOfTrials) => {
     const answer = readlineSync.question('Your answer: ');
     const correctAnswer = getCorrectAnswer(numbers[index], numbers[index + 1], operator);
     if (check(Number(answer), Number(correctAnswer))) {
-      console.log('Correct!');
       flag += 1;
-    } else {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
-      break;
-    }
-    index += 2;
+      index += 2;
+    } else { break; }
   }
   printResult(name, flag, numberOfTrials);
 };
