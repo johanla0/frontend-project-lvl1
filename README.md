@@ -13,3 +13,6 @@
 
 ### Brain Progression
 [![asciicast](https://asciinema.org/a/I5W8ddHFhz92uuJqRmvNN5mxt.svg)](https://asciinema.org/a/I5W8ddHFhz92uuJqRmvNN5mxt)
+
+### Brain Prime
+[![asciicast](https://asciinema.org/a/8et8FVP7J5IvPOv77QNBbqUQA.svg)](https://asciinema.org/a/8et8FVP7J5IvPOv77QNBbqUQA)
