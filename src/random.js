@@ -3,7 +3,7 @@ const getRandomInt = (lower = 0, upper = 100) => {
   const max = Math.floor(upper);
   return Math.floor(Math.random() * (max - min)) + min;
 };
-const generateArrayOfRandoms = (length) => {
+const generateArrayOfRandoms = (length = 6) => {
   const lower = 0;
   const upper = 100;
   const numbers = [];
