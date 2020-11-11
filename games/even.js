@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
 import { generateArrayOfRandoms } from '../src/random.js';
+import { printResult } from '../src/cli.js';
 
 const getCorrectAnswer = (number) => (number % 2 === 0 ? 'yes' : 'no');
 const check = (number, answer) => {
@@ -26,9 +27,5 @@ export default (name, numberOfTrials) => {
       break;
     }
   }
-  if (flag === numberOfTrials) {
-    console.log(`Congratulations, ${name}`);
-  } else {
-    console.log(`Let's try again, ${name}`);
-  }
+  printResult(name, flag, numberOfTrials);
 };

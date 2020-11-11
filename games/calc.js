@@ -1,5 +1,6 @@
 import readlineSync from 'readline-sync';
 import { getRandomInt, generateArrayOfRandoms } from '../src/random.js';
+import { printResult } from '../src/cli.js';
 
 // const getCorrectAnswer = (number1, number2, operator) => eval(number1 + operator + number2);
 const getCorrectAnswer = (number1, number2, operator) => {
@@ -48,9 +49,5 @@ export default (name, numberOfTrials) => {
     }
     index += 2;
   }
-  if (flag === numberOfTrials) {
-    console.log(`Congratulations, ${name}`);
-  } else {
-    console.log(`Let's try again, ${name}`);
-  }
+  printResult(name, flag, numberOfTrials);
 };

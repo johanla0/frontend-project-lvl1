@@ -8,5 +8,11 @@ const greet = () => {
   console.log(`Hello ${name}!`);
   return name;
 };
-
-export default greet;
+const printResult = (name, flag, numberOfTrials) => {
+  if (flag === numberOfTrials) {
+    console.log(`Congratulations, ${name}`);
+  } else {
+    console.log(`Let's try again, ${name}`);
+  }
+};
+export { greet as default, printResult };
