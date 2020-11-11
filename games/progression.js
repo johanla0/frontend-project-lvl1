@@ -4,7 +4,7 @@ import { printResult } from '../src/cli.js';
 
 const generateProgression = (length) => {
   const start = getRandomInt();
-  const step = getRandomInt();
+  const step = getRandomInt() + 1;
   const progression = [];
   let j = start;
   for (let i = 0; i < length; i += 1) {
