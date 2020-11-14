@@ -1,6 +1,5 @@
-import readlineSync from 'readline-sync';
+import { ask, tell, printResult } from '../src/cli.js';
 import { generateArrayOfRandoms } from '../src/random.js';
-import { printResult } from '../src/cli.js';
 import check from '../src/check.js';
 
 const getCorrectAnswer = (number1, number2) => {
@@ -17,11 +16,11 @@ const getCorrectAnswer = (number1, number2) => {
 export default (name, numberOfTrials) => {
   const numbers = generateArrayOfRandoms(numberOfTrials * 2);
   let flag = false;
-  console.log('Find the greatest common divisor of given numbers.');
+  tell('Find the greatest common divisor of given numbers.');
   let index = 0;
   for (let i = 0; i < numberOfTrials; i += 1) {
-    console.log(`Question: ${numbers[index]} ${numbers[index + 1]}`);
-    const answer = readlineSync.question('Your answer: ');
+    tell(`Question: ${numbers[index]} ${numbers[index + 1]}`);
+    const answer = ask('Your answer: ');
     const correctAnswer = getCorrectAnswer(numbers[index], numbers[index + 1]);
     if (check(Number(answer), Number(correctAnswer))) {
       flag = true;
