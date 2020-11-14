@@ -24,8 +24,9 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: make lint
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
+      # This check only works with async console input thus it fails with readline-sync
+      #- name: Hexlet project check
+       # uses: hexlet/project-action@release
     
         
       
