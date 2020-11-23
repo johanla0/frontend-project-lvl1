@@ -26,8 +26,7 @@
   },
   "homepage": "https://github.com/johanla0/frontend-project-lvl1#readme",
   "dependencies": {
-    "promptly": "^3.1.0",
-    "readline-sync": "^1.4.10"
+    "promptly": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
