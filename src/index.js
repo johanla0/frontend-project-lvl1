@@ -45,9 +45,9 @@ const play = async (gameType) => {
   }
 
   if (flag) {
-    console.info(`Congratulations, ${name}`);
+    console.info(`Congratulations, ${name}!`);
   } else {
-    console.info(`Let's try again, ${name}`);
+    console.info(`Let's try again, ${name}!`);
   }
 };
 
