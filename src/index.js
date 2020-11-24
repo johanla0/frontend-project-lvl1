@@ -1,36 +1,14 @@
 import promptly from 'promptly';
 import greet from './cli.js';
-import even from './games/even.js';
-import calc from './games/calc.js';
-import gcd from './games/gcd.js';
-import progression from './games/progression.js';
-import prime from './games/prime.js';
 
-const start = (gameType) => {
-  switch (gameType) {
-    case 'even':
-      return even();
-    case 'calc':
-      return calc();
-    case 'gcd':
-      return gcd();
-    case 'progression':
-      return progression();
-    case 'prime':
-      return prime();
-    default:
-      return undefined;
-  }
-};
-
-const play = async (gameType) => {
+const start = async (game) => {
   const name = await greet();
   let numberOfTrials = 3;
   let flag = true;
-  const { rules } = start(gameType);
+  const { rules } = game();
   console.info(rules);
   while (numberOfTrials > 0) {
-    const { question, correctAnswer } = start(gameType);
+    const { question, correctAnswer } = game();
     console.info(question);
     const answer = await promptly.prompt('Your answer: ');
     if (answer === correctAnswer) {
@@ -51,4 +29,4 @@ const play = async (gameType) => {
   }
 };
 
-export default play;
+export default start;
