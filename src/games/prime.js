@@ -1,14 +1,20 @@
-import getRandomInt from '../random.js';
+import getRandomFromRange from '../random.js';
+import start from '../index.js';
 
-const getCorrectAnswer = (number) => {
-  const primeNumbers = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
-    31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
-  return primeNumbers.includes(number) ? 'yes' : 'no';
+const gameParams = {
+  rules: 'Answer "yes" if the number is prime, otherwise answer "no".',
+  range: { min: 0, max: 100 },
 };
-export default () => {
-  const number = getRandomInt();
-  const rules = 'Answer "yes" if the number is prime, otherwise answer "no".';
+const isPrime = (number) => {
+  for (let i = 2; i <= number / 2; i += 1) {
+    if (number % i === 0) { return false; }
+  }
+  return true;
+};
+const play = () => {
+  const number = getRandomFromRange(gameParams.range.min, gameParams.range.max);
   const question = `Question: ${number}`;
-  const correctAnswer = getCorrectAnswer(number);
-  return { rules, question, correctAnswer };
+  const correctAnswer = isPrime(number) ? 'yes' : 'no';
+  return { question, correctAnswer };
 };
+export default () => start(gameParams.rules, play);

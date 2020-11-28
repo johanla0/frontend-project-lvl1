@@ -1,21 +1,28 @@
-import getRandomInt from '../random.js';
+import getRandomFromRange from '../random.js';
+import start from '../index.js';
 
-const getCorrectAnswer = (number1, number2) => {
-  let a = number1;
-  let b = number2;
-  let t = 0;
-  while (b !== 0) {
-    t = b;
-    b = a % b;
-    a = t;
+const gameParams = {
+  rules: 'Find the greatest common divisor of given numbers.',
+  range: { min: 0, max: 100 },
+};
+const binaryGcd = (a, b) => {
+  if (a === b || b === 0) { return a; }
+  if (a === 0) { return b; }
+  if (a % 2 === 0) {
+    if (b % 2 === 0) { return binaryGcd(a / 2, b / 2) * 2; }
+    return binaryGcd(a / 2, b);
   }
-  return a;
+  if (b % 2 === 0) { return binaryGcd(a, b / 2); }
+  if (a > b) { return binaryGcd((a - b) / 2, b); }
+  return binaryGcd((b - a) / 2, a);
 };
-export default () => {
-  const number1 = getRandomInt();
-  const number2 = getRandomInt();
-  const rules = 'Find the greatest common divisor of given numbers.';
+const getGCD = (number1, number2) => binaryGcd(number1, number2);
+const play = () => {
+  const number1 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
+  const number2 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
+
   const question = `Question: ${number1} ${number2}`;
-  const correctAnswer = String(getCorrectAnswer(number1, number2));
-  return { rules, question, correctAnswer };
+  const correctAnswer = String(getGCD(number1, number2));
+  return { question, correctAnswer };
 };
+export default () => start(gameParams.rules, play);

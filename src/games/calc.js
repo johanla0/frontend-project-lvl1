@@ -1,6 +1,11 @@
-import getRandomInt from '../random.js';
+import getRandomFromRange from '../random.js';
+import start from '../index.js';
 
-const getCorrectAnswer = (number1, number2, operator) => {
+const gameParams = {
+  rules: 'What is the result of the expression?',
+  operators: ['+', '-', '*'],
+};
+const calculate = (number1, number2, operator) => {
   switch (operator) {
     case '+':
       return number1 + number2;
@@ -9,29 +14,23 @@ const getCorrectAnswer = (number1, number2, operator) => {
     case '*':
       return number1 * number2;
     default:
-      return NaN;
+      throw new Error('Operator not defined');
   }
 };
-const getOperator = () => {
-  const lower = 0;
-  const upper = 2;
-  switch (getRandomInt(lower, upper)) {
-    case 0:
-      return '+';
-    case 1:
-      return '-';
-    case 2:
-      return '*';
-    default:
-      return '+';
-  }
-};
-export default () => {
-  const number1 = getRandomInt();
-  const number2 = getRandomInt();
-  const rules = 'What is the result of the expression?';
+const getOperator = () => gameParams
+  .operators[getRandomFromRange(0, gameParams.operators.length - 1)];
+const play = () => {
+  const range = { min: 0, max: 100 };
+  const number1 = getRandomFromRange(range.min, range.max);
+  const number2 = getRandomFromRange(range.min, range.max);
   const operator = getOperator();
   const question = `Question: ${number1} ${operator} ${number2}`;
-  const correctAnswer = String(getCorrectAnswer(number1, number2, operator));
-  return { rules, question, correctAnswer };
+  try {
+    const correctAnswer = String(calculate(number1, number2, operator));
+    return { question, correctAnswer };
+  } catch (e) {
+    console.log(e.message);
+    return {};
+  }
 };
+export default () => start(gameParams.rules, play);

@@ -1,24 +1,27 @@
-import getRandomInt from '../random.js';
+import getRandomFromRange from '../random.js';
+import start from '../index.js';
 
-const generateProgression = (length) => {
-  const start = getRandomInt();
-  const step = getRandomInt() + 1;
+const gameParams = {
+  rules: 'What number is missing in the progression?',
+  progressionLength: 10,
+  range: { min: 0, max: 100 },
+};
+const generateProgression = () => {
+  const startNum = getRandomFromRange(gameParams.range.min, gameParams.range.max);
+  const step = getRandomFromRange(gameParams.range.min, gameParams.range.max) + 1;
   const progression = [];
-  let j = start;
-  for (let i = 0; i < length; i += 1) {
-    progression.push(j);
-    j += step;
+  for (let i = 0; i < gameParams.progressionLength; i += 1) {
+    progression.push(startNum + step * i);
   }
   return progression;
 };
-export default () => {
-  const length = 10;
-  const numbers = generateProgression(length);
-  const indexToHide = getRandomInt(0, length - 1);
+const play = () => {
+  const numbers = generateProgression();
+  const indexToHide = getRandomFromRange(0, gameParams.progressionLength - 1);
   const correctAnswer = String(numbers[indexToHide]);
   numbers[indexToHide] = '..';
   const progression = numbers.join(' ');
-  const rules = 'What number is missing in the progression?';
   const question = `Question: ${progression}`;
-  return { rules, question, correctAnswer };
+  return { question, correctAnswer };
 };
+export default () => start(gameParams.rules, play);
