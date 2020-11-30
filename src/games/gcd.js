@@ -5,18 +5,17 @@ const gameParams = {
   rules: 'Find the greatest common divisor of given numbers.',
   range: { min: 0, max: 100 },
 };
-const binaryGcd = (a, b) => {
+const getGCD = (a, b) => {
   if (a === b || b === 0) { return a; }
   if (a === 0) { return b; }
   if (a % 2 === 0) {
-    if (b % 2 === 0) { return binaryGcd(a / 2, b / 2) * 2; }
-    return binaryGcd(a / 2, b);
+    if (b % 2 === 0) { return getGCD(a / 2, b / 2) * 2; }
+    return getGCD(a / 2, b);
   }
-  if (b % 2 === 0) { return binaryGcd(a, b / 2); }
-  if (a > b) { return binaryGcd((a - b) / 2, b); }
-  return binaryGcd((b - a) / 2, a);
+  if (b % 2 === 0) { return getGCD(a, b / 2); }
+  if (a > b) { return getGCD((a - b) / 2, b); }
+  return getGCD((b - a) / 2, a);
 };
-const getGCD = (number1, number2) => binaryGcd(number1, number2);
 const play = () => {
   const number1 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
   const number2 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
