@@ -3,7 +3,6 @@ import start from '../index.js';
 
 const gameParams = {
   rules: 'Answer "yes" if the number is prime, otherwise answer "no".',
-  range: { min: 0, max: 100 },
 };
 const isPrime = (number) => {
   if (number < 2) { return false; }
@@ -12,10 +11,10 @@ const isPrime = (number) => {
   }
   return true;
 };
-const play = () => {
-  const number = getRandomFromRange(gameParams.range.min, gameParams.range.max);
-  const question = `Question: ${number}`;
+const getQuestionAndAnswer = () => {
+  const number = getRandomFromRange(0, 100);
+  const question = `${number}`;
   const correctAnswer = isPrime(number) ? 'yes' : 'no';
   return { question, correctAnswer };
 };
-export default () => start(gameParams.rules, play);
+export default () => start(gameParams.rules, getQuestionAndAnswer);

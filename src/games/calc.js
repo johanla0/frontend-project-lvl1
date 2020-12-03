@@ -3,7 +3,6 @@ import start from '../index.js';
 
 const gameParams = {
   rules: 'What is the result of the expression?',
-  range: { min: 0, max: 100 },
   operators: ['+', '-', '*'],
 };
 const calculate = (number1, number2, operator) => {
@@ -15,22 +14,17 @@ const calculate = (number1, number2, operator) => {
     case '*':
       return number1 * number2;
     default:
-      throw new Error('Operator not defined');
+      throw new Error('Operator not supported');
   }
 };
 const getOperator = () => gameParams
   .operators[getRandomFromRange(0, gameParams.operators.length - 1)];
-const play = () => {
-  const number1 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
-  const number2 = getRandomFromRange(gameParams.range.min, gameParams.range.max);
+const getQuestionAndAnswer = () => {
+  const number1 = getRandomFromRange(0, 100);
+  const number2 = getRandomFromRange(0, 100);
   const operator = getOperator();
-  const question = `Question: ${number1} ${operator} ${number2}`;
-  try {
-    const correctAnswer = String(calculate(number1, number2, operator));
-    return { question, correctAnswer };
-  } catch (e) {
-    console.log(e.message);
-    return {};
-  }
+  const question = `${number1} ${operator} ${number2}`;
+  const correctAnswer = String(calculate(number1, number2, operator));
+  return { question, correctAnswer };
 };
-export default () => start(gameParams.rules, play);
+export default () => start(gameParams.rules, getQuestionAndAnswer);
