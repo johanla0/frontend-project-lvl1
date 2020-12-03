@@ -3,25 +3,24 @@ import start from '../index.js';
 
 const gameParams = {
   rules: 'What number is missing in the progression?',
-  progressionLength: 10,
-  range: { min: 0, max: 100 },
+  progression: { length: 10 },
 };
-const generateProgression = () => {
-  const startNum = getRandomFromRange(gameParams.range.min, gameParams.range.max);
-  const step = getRandomFromRange(gameParams.range.min, gameParams.range.max) + 1;
+const generateProgression = (startNum, step) => {
   const progression = [];
-  for (let i = 0; i < gameParams.progressionLength; i += 1) {
+  for (let i = 0; i < gameParams.progression.length; i += 1) {
     progression.push(startNum + step * i);
   }
   return progression;
 };
-const play = () => {
-  const numbers = generateProgression();
-  const indexToHide = getRandomFromRange(0, gameParams.progressionLength - 1);
+const getQuestionAndAnswer = () => {
+  const startNum = getRandomFromRange(0, 100);
+  const step = getRandomFromRange(0, 100) + 1;
+  const numbers = generateProgression(startNum, step);
+  const indexToHide = getRandomFromRange(0, gameParams.progression.length - 1);
   const correctAnswer = String(numbers[indexToHide]);
   numbers[indexToHide] = '..';
   const progression = numbers.join(' ');
-  const question = `Question: ${progression}`;
+  const question = `${progression}`;
   return { question, correctAnswer };
 };
-export default () => start(gameParams.rules, play);
+export default () => start(gameParams.rules, getQuestionAndAnswer);
