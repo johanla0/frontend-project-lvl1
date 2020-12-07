@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import play from '../src/games/prime.js';
+import getQuestionAndAnswer from '../src/games/prime.js';
 
-play();
+getQuestionAndAnswer();

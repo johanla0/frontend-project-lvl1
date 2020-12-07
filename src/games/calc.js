@@ -1,5 +1,5 @@
 import getRandomFromRange from '../random.js';
-import start from '../index.js';
+import run from '../index.js';
 
 const gameParams = {
   rules: 'What is the result of the expression?',
@@ -27,4 +27,4 @@ const getQuestionAndAnswer = () => {
   const correctAnswer = String(calculate(number1, number2, operator));
   return { question, correctAnswer };
 };
-export default () => start(gameParams.rules, getQuestionAndAnswer);
+export default () => run(gameParams.rules, getQuestionAndAnswer);

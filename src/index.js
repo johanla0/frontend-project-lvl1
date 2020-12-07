@@ -1,6 +1,6 @@
 import promptly from 'promptly';
 
-const start = async (rules, getQuestionAndAnswer) => {
+const run = async (rules, getQuestionAndAnswer) => {
   const name = await promptly.prompt('May I have your name? ');
   console.info(`Hello, ${name}!`);
   let numberOfTrials = 3;
@@ -23,4 +23,4 @@ const start = async (rules, getQuestionAndAnswer) => {
   console.info(`Congratulations, ${name}!`);
 };
 
-export default start;
+export default run;

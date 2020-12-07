@@ -1,5 +1,5 @@
 import getRandomFromRange from '../random.js';
-import start from '../index.js';
+import run from '../index.js';
 
 const gameParams = {
   rules: 'Answer "yes" if the number is prime, otherwise answer "no".',
@@ -13,8 +13,8 @@ const isPrime = (number) => {
 };
 const getQuestionAndAnswer = () => {
   const number = getRandomFromRange(0, 100);
-  const question = `${number}`;
+  const question = String(number);
   const correctAnswer = isPrime(number) ? 'yes' : 'no';
   return { question, correctAnswer };
 };
-export default () => start(gameParams.rules, getQuestionAndAnswer);
+export default () => run(gameParams.rules, getQuestionAndAnswer);
