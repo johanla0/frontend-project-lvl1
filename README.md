@@ -3,7 +3,7 @@
 [![hexlet-check](https://github.com/johanla0/frontend-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/johanla0/frontend-project-lvl1/actions)
 
 ### Серия консольных игр Brain Games.
-1. Склонируйте репозиторий `git https://github.com/johanla0/frontend-project-lvl1.git`
+1. Склонируйте репозиторий `git clone https://github.com/johanla0/frontend-project-lvl1.git`
 2. Для установки введите `make install`
 
 ### Brain Even
