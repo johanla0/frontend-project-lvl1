@@ -3,9 +3,10 @@ import promptly from 'promptly';
 const run = async (rules, getQuestionAndAnswer) => {
   const name = await promptly.prompt('May I have your name? ');
   console.info(`Hello, ${name}!`);
-  let numberOfTrials = 3;
+  const numberOfTrials = 3;
+  let roundsLeft = numberOfTrials;
   console.info(rules);
-  while (numberOfTrials > 0) {
+  while (roundsLeft > 0) {
     const { question, correctAnswer } = getQuestionAndAnswer();
 
     console.info(`Question: ${question}`);
@@ -18,7 +19,7 @@ const run = async (rules, getQuestionAndAnswer) => {
       return;
     }
 
-    numberOfTrials -= 1;
+    roundsLeft -= 1;
   }
   console.info(`Congratulations, ${name}!`);
 };
