@@ -1,10 +1,8 @@
 import getRandomFromRange from '../random.js';
 import run from '../index.js';
 
-const gameParams = {
-  rules: 'What is the result of the expression?',
-  operators: ['+', '-', '*'],
-};
+const rules = 'What is the result of the expression?';
+
 const calculate = (number1, number2, operator) => {
   switch (operator) {
     case '+':
@@ -17,8 +15,12 @@ const calculate = (number1, number2, operator) => {
       throw new Error('Operator not supported');
   }
 };
-const getOperator = () => gameParams
-  .operators[getRandomFromRange(0, gameParams.operators.length - 1)];
+
+const getOperator = () => {
+  const operators = ['+', '-', '*'];
+  return operators[getRandomFromRange(0, operators.length - 1)];
+};
+
 const getQuestionAndAnswer = () => {
   const number1 = getRandomFromRange(0, 100);
   const number2 = getRandomFromRange(0, 100);
@@ -27,4 +29,4 @@ const getQuestionAndAnswer = () => {
   const correctAnswer = String(calculate(number1, number2, operator));
   return { question, correctAnswer };
 };
-export default () => run(gameParams.rules, getQuestionAndAnswer);
+export default () => run(rules, getQuestionAndAnswer);
